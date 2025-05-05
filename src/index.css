@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+  background-color: #111111;
+}
+
+
+/* body {
+  @apply bg-[#111111] text-white;
+} */
+
