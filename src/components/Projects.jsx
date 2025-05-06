@@ -15,9 +15,9 @@ export default function Projects() {
       description: 'Creating thoughtful tools powered by LLMs, LangChain, and Python.',
     },
     {
-      name: 'Awesome AI Tips',
-      url: 'https://aigenius.tips',
-      description: 'Neat tips to build faster with GenAI tools and APIs.',
+      name: 'Diagnoso',
+      url: 'https://diagnoso.vercel.app/',
+      description: 'Fast, secure, and intuitive. Capture patient data and get instant LLM-powered medical insights.',
     },
     {
       name: 'Portfolios',
