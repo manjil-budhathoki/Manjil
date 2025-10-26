@@ -10,9 +10,17 @@ import Other from "./sections/Other";
 import data from "./data/data.json";
 import Footer from "./components/Footer";
 
+import ResumeModal from "./components/ResumeModal";
+import UnderConstructionModal from "./components/UnderConstructionModal";
+
 export default function App() {
   const items = ["Projects", "Experience", "Tools", "Other"];
   const [active, setActive] = useState(items[0]);
+
+  //  control the modal's visibility
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
+  const [isReadingOpen, setIsReadingOpen] = useState(false);
 
   return (
     <div className="relative">
@@ -28,7 +36,22 @@ export default function App() {
           {active === "Other" && <Other lines={data.other} />}
         </section>
       </main>
-      <Footer />
+
+      <Footer 
+        onResumeClick={() => setIsResumeOpen(true)}
+        onReadingClick={() => setIsReadingOpen(true)}
+      />
+
+      <ResumeModal 
+        isOpen={isResumeOpen} 
+        onClose={() => setIsResumeOpen(false)} 
+      />
+      
+      <UnderConstructionModal
+        isOpen={isReadingOpen}
+        onClose={() => setIsReadingOpen(false)}
+      />
+
     </div>
   );
 }

@@ -113,18 +113,18 @@ export default function Header() {
 
       {/* Row 2: Intro text */}
       <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300 max-w-prose relative z-10">
-        Software Engineer based in Germany, 20 years old with a passion for open
-        source. Self proclaimed 10x engineer currently working on{" "}
-        <span className="text-blue-600 dark:text-blue-400 font-semibold">Rivo</span> and{" "}
-        <span className="text-blue-600 dark:text-blue-400 font-semibold">Would You Bot</span>.
+        Machine Learning Engineer based in Nepal, 21 years old with a passion for NLP and deep learning.
+        Currently working on a{" "}
+        <span className="text-blue-600 dark:text-blue-400 font-semibold">Deforestation Audio Classifier</span> and{" "}
+        <span className="text-blue-600 dark:text-blue-400 font-semibold">End-to-End MLOps Prediction Pipeline</span>.
       </p>
 
       {/* Row 3: Social icons */}
       <div className="flex items-center gap-2 mt-3 text-neutral-600 dark:text-neutral-300 relative z-10">
         {[
-          { icon: <SiHuggingface className="text-lg" />, label: "Hugging Face", href: "https://huggingface.co/" },
-          { icon: <FaLinkedin className="text-lg" />, label: "LinkedIn", href: "https://linkedin.com/in/yourprofile" },
-          { icon: <FaTwitter className="text-lg" />, label: "Twitter/X", href: "https://twitter.com/yourprofile" },
+          { icon: <SiHuggingface className="text-lg" />, label: "Hugging Face", href: "https://huggingface.co/manjilbudhathoki" },
+          { icon: <FaLinkedin className="text-lg" />, label: "LinkedIn", href: "https://www.linkedin.com/in/manjil-budhathoki/" },
+          { icon: <FaTwitter className="text-lg" />, label: "Twitter/X", href: "https://x.com/buildwithNexon" },
         ].map(({ icon, label, href }, idx) => (
           <a
             key={idx}
