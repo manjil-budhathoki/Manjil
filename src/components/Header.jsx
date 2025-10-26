@@ -3,9 +3,9 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
 
 // Images (adjust paths to match your project)
-import eyeOpen from "../assets/eye-open.png";       // light mode icon
-import eyeClosed from "../assets/eye-close.png";   // dark mode icon
-import profileHover from "../assets/manjil.png"; // larger hover image
+import eyeOpen from "/assets/eye-open.png";       // light mode icon
+import eyeClosed from "/assets/eye-close.png";   // dark mode icon
+import profileHover from "/assets/manjil.png"; // larger hover image
 
 export default function Header() {
   const [dark, setDark] = useState(false);

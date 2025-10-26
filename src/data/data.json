@@ -6,7 +6,7 @@
       "desc": "Interactive Discord bot providing engaging 'Would You Rather' questions and community features.",
       "tags": ["Node.js", "Discord.js", "TypeScript", "MongoDB", "Docker"],
       "link": { "href": "#", "label": "Live Demo" },
-      "logo": "src/assets/wouldyoubot.webp"
+      "logo": "/assets/wouldyoubot.webp"
     },
       {
     "title": "Iriscope – Unsupervised ML Playground",
@@ -14,7 +14,7 @@
     "desc": "Interactive web app visualizing K-Means clustering in 3D with React and Three.js. Designed for immersive learning in unsupervised ML.",
     "tags": ["React", "Three.js", "Tailwind CSS", "Machine Learning", "Visualization"],
     "link": { "href": "https://iriscope.vercel.app/", "label": "Live Demo" },
-    "logo": "src/assets/Iriscope.svg"
+    "logo": "/assets/Iriscope.svg"
   },
     {
     "title": "Loan Approval Prediction with CatBoost",
@@ -22,7 +22,7 @@
     "desc": "Developed a CatBoost model predicting loan approvals based on income, credit history, and education features, with production-ready pipeline integration.",
     "tags": ["Python", "CatBoost", "Scikit-learn", "Pandas", "Data Science"],
     "link": { "href": "https://github.com/manjil-budhathoki/Loan-Approval-Prediction-TRaining", "label": "View on GitHub" },
-    "logo": "src/assets/loan.png"
+    "logo": "/assets/loan.png"
   },
     {
     "title": "End-to-End MLOps Prediction Pipeline",
@@ -30,7 +30,7 @@
     "desc": "Automated revenue prediction pipeline with Airflow, FastAPI, and Docker. Integrated MLflow for experiment tracking and deployed to Render with CI/CD.",
     "tags": ["FastAPI", "Docker", "Airflow", "MLflow", "MLOps"],
     "link": { "href": "https://github.com/manjil-budhathoki/online-shopper-prediction-api", "label": "View on GitHub" },
-    "logo": "src/assets/infinity.png"
+    "logo": "/assets/infinity.png"
   },
     {
     "title": "Deforestation Surveillance with Audio Classifier",
@@ -38,7 +38,7 @@
     "desc": "Custom audio classification model using YAMNet to detect deforestation-related sounds with 92% accuracy, trained on a curated Nepali dataset.",
     "tags": ["Python", "TensorFlow", "YAMNet", "Audio Processing", "Deep Learning"],
     "link": { "href": "https://github.com/nishanshrestha04/BanRakshak", "label": "View on GitHub" },
-    "logo": "src/assets/forest.png"
+    "logo": "/assets/forest.png"
   }
   ],
   "experience": {
@@ -50,7 +50,7 @@
         "period": "Oct 2024 – Dec 2027 · 3 yrs 2 mos",
         "location": "Kathmandu, Maitidevi, Nepal",
         "grade": "2.9",
-        "logo": "src/assets/sunway.png",
+        "logo": "/assets/sunway.png",
         "url": "https://www.dhbw.de/"
       },
       {
@@ -59,7 +59,7 @@
         "type": "Complete",
         "period": "Sep 2022 – Jul 2024 · 1 yr 10 mos",
         "location": "Morang, Urlabari-7, Nepal",
-        "logo": "src/assets/morang.png"
+        "logo": "/assets/morang.png"
       }
     ],
     "work": [
@@ -68,25 +68,25 @@
   },
   "tools": {
   "Frontend": [
-    { "name": "React",        "logo": "src/assets/react.svg" },
-    { "name": "Tailwind CSS", "logo": "src/assets/talwind.png" }
+    { "name": "React",        "logo": "/assets/react.svg" },
+    { "name": "Tailwind CSS", "logo": "/assets/talwind.png" }
   ],
   "Backend & Infra": [
-    { "name": "FastAPI",     "logo": "src/assets/fastapi.png" },
-    { "name": "Docker",      "logo": "src/assets/docker.png" },
-    { "name": "Django",        "logo": "src/assets/django.png" }
+    { "name": "FastAPI",     "logo": "/assets/fastapi.png" },
+    { "name": "Docker",      "logo": "/assets/docker.png" },
+    { "name": "Django",        "logo": "/assets/django.png" }
   ],
   "ML / DL / NLP": [
-    { "name": "Python",         "logo": "src/assets/python.png" },
-    { "name": "PyTorch",        "logo": "src/assets/Pytorch.png" },
-    { "name": "scikit-learn",   "logo": "src/assets/sckitlearn.png" },
-    { "name": "Transformers",   "logo": "src/assets/transformers.jpg" },
-    { "name": "spaCy",          "logo": "src/assets/spacy.png" },
-    { "name": "LangChain",      "logo": "src/assets/langchain.png" }
+    { "name": "Python",         "logo": "/assets/python.png" },
+    { "name": "PyTorch",        "logo": "/assets/Pytorch.png" },
+    { "name": "scikit-learn",   "logo": "/assets/sckitlearn.png" },
+    { "name": "Transformers",   "logo": "/assets/transformers.jpg" },
+    { "name": "spaCy",          "logo": "/assets/spacy.png" },
+    { "name": "LangChain",      "logo": "/assets/langchain.png" }
   ],
   "Dev Tools": [
-    { "name": "GitHub Actions", "logo": "src/assets/github.png" },
-    { "name": "Airflow",        "logo": "src/assets/Airflow.png" }
+    { "name": "GitHub Actions", "logo": "/assets/github.png" },
+    { "name": "Airflow",        "logo": "/assets/Airflow.png" }
   ]
 },
   "other": {
