@@ -1,0 +1,82 @@
+{
+  "projects": [
+    {
+      "title": "Would You Bot",
+      "badge": "Active",
+      "desc": "Interactive Discord bot providing engaging 'Would You Rather' questions and community features.",
+      "tags": ["Node.js", "Discord.js", "TypeScript", "MongoDB", "Docker"],
+      "link": { "href": "#", "label": "Live Demo" },
+      "logo": "src/assets/wouldyoubot.webp"
+    }
+  ],
+  "experience": {
+    "education": [
+      {
+        "school": "Sunway College Kathmandu",
+        "degree": "Bachelor of Science – BS, Computer Science",
+        "type": "Full-time",
+        "period": "Oct 2024 – Dec 2027 · 3 yrs 2 mos",
+        "location": "Kathmandu, Maitidevi, Nepal",
+        "grade": "2.9",
+        "logo": "src/assets/sunway.png",
+        "url": "https://www.dhbw.de/"
+      },
+      {
+        "school": "Morang Model College & School",
+        "degree": "Higher Secondary Education – +2 Science",
+        "type": "Complete",
+        "period": "Sep 2022 – Jul 2024 · 1 yr 10 mos",
+        "location": "Morang, Urlabari-7, Nepal",
+        "logo": "src/assets/morang.png"
+      }
+    ],
+    "work": [
+
+    ]
+  },
+  "tools": {
+  "Frontend": [
+    { "name": "React",        "logo": "src/assets/react.svg" },
+    { "name": "Tailwind CSS", "logo": "src/assets/talwind.png" }
+  ],
+  "Backend & Infra": [
+    { "name": "FastAPI",     "logo": "src/assets/fastapi.png" },
+    { "name": "Docker",      "logo": "src/assets/docker.png" },
+    { "name": "Django",        "logo": "src/assets/django.png" }
+  ],
+  "ML / DL / NLP": [
+    { "name": "Python",         "logo": "src/assets/python.png" },
+    { "name": "PyTorch",        "logo": "src/assets/Pytorch.png" },
+    { "name": "scikit-learn",   "logo": "src/assets/sckitlearn.png" },
+    { "name": "Transformers",   "logo": "src/assets/transformers.jpg" },
+    { "name": "spaCy",          "logo": "src/assets/spacy.png" },
+    { "name": "LangChain",      "logo": "src/assets/langchain.png" }
+  ],
+  "Dev Tools": [
+    { "name": "GitHub Actions", "logo": "src/assets/github.png" },
+    { "name": "Airflow",        "logo": "src/assets/Airflow.png" }
+  ]
+},
+  "other": {
+  "updatedAt": "2025-08-15",
+  "currently": [
+    { "icon": "book",  "label": "Learning", "value": "Advanced NLP, LoRA & PEFT" },
+    { "icon": "tool",  "label": "Building", "value": "AI-powered University Recommendation System" },
+    { "icon": "book",  "label": "Reading",  "value": "Deep Learning with Python — Chollet" }
+  ],
+  "media": [
+    { "kind": "paper", "title": "Fine-Tuning LLaMA 2 for Nepali TTS", "meta": "Research • 2025", "href": "/papers/llama2-nepali-tts.pdf" },
+    { "kind": "video", "title": "LangGraph Multi-Agent Retrieval Demo", "meta": "Talk • YouTube", "href": "https://youtu.be/your-talk" },
+    { "kind": "post",  "title": "Releasing a Nepali AI Dataset", "meta": "Blog", "href": "/blog/nepali-ai-dataset" }
+  ],
+  "metrics": [
+    { "label": "Projects Shipped", "value": "12" },
+    { "label": "Papers Written",   "value": "0" },
+    { "label": "Hackathons Won",   "value": "0" },
+    { "label": "Active Users",     "value": "0" }
+  ]
+}
+
+
+
+}

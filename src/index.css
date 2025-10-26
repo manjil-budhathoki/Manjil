@@ -1,0 +1,131 @@
+/* 1) imports — must be first */
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* 2) manual dark mode (Tailwind v4) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 3) base styles */
+@layer base {
+  :root {
+    /* surfaces */
+    --surface-light: 255 255 255;
+    --surface-dark: 10 10 10;
+
+    /* dot colors */
+    --dot-light: 0 0 0 / 11%;
+    --dot-dark: 255 255 255 / 12%;
+
+    /* mobile-first dot geometry (responsive below) */
+    --dot-size: 1px;
+    --dot-gap: 20px;
+  }
+
+  /* sm ≥ 640px */
+  @media (min-width: 640px) {
+    :root {
+      --dot-size: 1.2px;
+      --dot-gap: 22px;
+    }
+  }
+
+  /* lg ≥ 1024px */
+  @media (min-width: 1024px) {
+    :root {
+      --dot-size: 1.4px;
+      --dot-gap: 26px;
+    }
+  }
+
+  html, body {
+    @apply min-h-screen transition-colors;
+  }
+
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    background-color: rgb(var(--surface-light));
+    color: rgb(23 23 23);
+
+    /* subtle, responsive dotted background */
+    background-image:
+      radial-gradient(rgb(var(--dot-light)) var(--dot-size), transparent var(--dot-size));
+    background-size: var(--dot-gap) var(--dot-gap);
+    background-position: 0 0;
+  }
+
+  .dark body {
+    background-color: rgb(var(--surface-dark));
+    color: rgb(245 245 245);
+
+    background-image:
+      radial-gradient(rgb(var(--dot-dark)) var(--dot-size), transparent var(--dot-size));
+    background-size: var(--dot-gap) var(--dot-gap);
+    background-position: 0 0;
+  }
+
+  /* ---------------------------------------- */
+  /* Typography: headings tuned like dominik   */
+  /* ---------------------------------------- */
+  /* h1 */
+  h1, .h1 {
+    @apply font-semibold tracking-tight;
+    font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem); /* ~36 → ~60 */
+    line-height: 1.1;
+    margin-bottom: 0.75em; /* rhythm below */
+  }
+
+  /* h2 */
+  h2, .h2 {
+    @apply font-semibold tracking-tight;
+    font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem); /* ~24 → ~36 */
+    line-height: 1.15;
+    margin-bottom: 0.5em;
+  }
+
+  /* h3 */
+  h3, .h3 {
+    @apply font-medium tracking-tight;
+    font-size: clamp(1.25rem, 2vw + 0.25rem, 1.5rem); /* ~20 → ~24 */
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+  }
+
+  /* Automatic top margin for headings that are not first */
+  :where(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3):not(:first-child) {
+    margin-top: 2.5rem; /* creates clean section spacing */
+  }
+
+  /* Body text + links */
+  p, .muted { @apply text-neutral-600 dark:text-neutral-300; }
+  a { @apply text-neutral-800 dark:text-neutral-100 underline-offset-4 hover:underline; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html, body { transition: none !important; }
+}
+
+/* Experience Section */
+.experience-section {
+  max-width: 700px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline-item:last-child span {
+  display: none; /* Hide connector line on last item */
+}

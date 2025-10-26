@@ -1,0 +1,34 @@
+import { useState } from "react";
+import Header from "./components/Header";
+import Tabs from "./components/Tabs";
+
+import Projects from "./sections/Projects";
+import Experience from "./sections/Experience";
+import Tools from "./sections/Tools";
+import Other from "./sections/Other";
+
+import data from "./data/data.json";
+import Footer from "./components/Footer";
+
+export default function App() {
+  const items = ["Projects", "Experience", "Tools", "Other"];
+  const [active, setActive] = useState(items[0]);
+
+  return (
+    <div className="relative">
+      <Header />
+
+      <main className="max-w-5xl mx-auto px-4 mt-6">
+        <Tabs value={active} onChange={setActive} items={items} />
+
+        <section className="mt-6 space-y-6">
+          {active === "Projects" && <Projects projects={data.projects} />}
+          {active === "Experience" && <Experience data={data.experience} />}
+          {active === "Tools" && <Tools groups={data.tools} />}
+          {active === "Other" && <Other lines={data.other} />}
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
