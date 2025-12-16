@@ -63,7 +63,21 @@
       }
     ],
     "work": [
-
+        {
+      "company": "Navya Advisors Limited",
+      "role": "Backend Intern",
+      "type": "Internship",
+      "period": "Dec 2025 – Present",
+      "location": "On-Site / Nepal",
+      "url": "https://navyaadvisors.com/",
+      "logo": "/assets/navya.png",
+      "skills": [
+        "Python",
+        "Django",
+        "FastAPI",
+        "REST APIs"
+      ]
+    }
     ]
   },
   "tools": {
@@ -92,8 +106,8 @@
   "other": {
   "updatedAt": "2025-08-15",
   "currently": [
-    { "icon": "book",  "label": "Learning", "value": "Advanced NLP, LoRA & PEFT" },
-    { "icon": "tool",  "label": "Building", "value": "AI-powered University Recommendation System" },
+    { "icon": "book",  "label": "Learning", "value": "Advanced NLP, llm & OCR" },
+    { "icon": "tool",  "label": "Building", "value": "AI-Powered Identity Verification and Auto-Fill System" },
     { "icon": "book",  "label": "Reading",  "value": "Deep Learning with Python — Chollet" }
   ],
   "media": [
@@ -102,7 +116,7 @@
     { "kind": "post",  "title": "Releasing a Nepali AI Dataset", "meta": "Blog", "href": "/blog/nepali-ai-dataset" }
   ],
   "metrics": [
-    { "label": "Projects Shipped", "value": "12" },
+    { "label": "Projects Shipped", "value": "10+" },
     { "label": "Papers Written",   "value": "0" },
     { "label": "Hackathons Won",   "value": "0" },
     { "label": "Active Users",     "value": "0" }
