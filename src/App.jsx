@@ -12,7 +12,7 @@ import data from "./data/data.json";
 import Footer from "./components/Footer";
 
 import ResumeModal from "./components/ResumeModal";
-import UnderConstructionModal from "./components/UnderConstructionModal";
+import ReadingModal from "./components/ReadingModal";
 
 export default function App() {
   const items = ["Projects", "Blog", "Experience", "Tools", "Other"];
@@ -44,12 +44,12 @@ export default function App() {
         onReadingClick={() => setIsReadingOpen(true)}
       />
 
-      <ResumeModal 
-        isOpen={isResumeOpen} 
-        onClose={() => setIsResumeOpen(false)} 
+      <ResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
       />
-      
-      <UnderConstructionModal
+
+      <ReadingModal
         isOpen={isReadingOpen}
         onClose={() => setIsReadingOpen(false)}
       />
