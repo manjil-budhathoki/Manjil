@@ -1,0 +1,56 @@
+{
+  "header": {
+    "en": {
+      "name": "Hi, I'm Manjil Budhathoki",
+      "bio": "Machine Learning Engineer based in Nepal, 21 years old with a passion for NLP and deep learning. Currently working on a Deforestation Audio Classifier and End-to-End MLOps Prediction Pipeline."
+    },
+    "ne": {
+      "name": "नमस्ते, म Manjil Budhathoki हूँ",
+      "bio": "नेपालमा आधारित मेसिन लर्निङ इञ्जिनियर, २१ वर्षको NLP र गहिरो सिकाइमा अनुरागी। हाल एक वनविनाश अडियो वर्गीकरण र अन्त-देखि-अन्त MLOps भविष्यवाणी पाइपलाइन बनाइरहेको छु।"
+    }
+  },
+  "tabs": {
+    "en": ["Projects", "Blog", "Experience", "Tools", "Other"],
+    "ne": ["परियोजनाहरु", "ब्लग", "अनुभव", "उपकरणहरु", "अन्य"]
+  },
+  "sections": {
+    "projects": {
+      "en": "Projects",
+      "ne": "परियोजनाहरु"
+    },
+    "blog": {
+      "en": "Blog",
+      "ne": "ब्लग"
+    },
+    "experience": {
+      "en": "Experience",
+      "ne": "अनुभव"
+    },
+    "tools": {
+      "en": "Tools",
+      "ne": "उपकरणहरु"
+    },
+    "other": {
+      "en": "Other",
+      "ne": "अन्य"
+    }
+  },
+  "footer": {
+    "en": {
+      "resume": "View Resume",
+      "reading": "Research Papers"
+    },
+    "ne": {
+      "resume": "जीवनवृत्त हेर्नुहोस",
+      "reading": "अनुसन्धान कागजहरु"
+    }
+  },
+  "github": {
+    "en": "GitHub Contributions",
+    "ne": "GitHub योगदान"
+  },
+  "music": {
+    "en": "Now Playing",
+    "ne": "अब बजिरहेको"
+  }
+}

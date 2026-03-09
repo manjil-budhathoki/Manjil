@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LanguageProvider } from "./context/LanguageContext";
 import Header from "./components/Header";
 import Tabs from "./components/Tabs";
 
@@ -13,14 +14,14 @@ import Footer from "./components/Footer";
 
 import ResumeModal from "./components/ResumeModal";
 import ReadingModal from "./components/ReadingModal";
+import GitHubTracker from "./components/GitHubTracker";
+import SpotifyPlayer from "./components/SpotifyPlayer";
 
-export default function App() {
+function AppContent() {
   const items = ["Projects", "Blog", "Experience", "Tools", "Other"];
   const [active, setActive] = useState(items[0]);
 
-  //  control the modal's visibility
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-
   const [isReadingOpen, setIsReadingOpen] = useState(false);
 
   return (
@@ -37,9 +38,12 @@ export default function App() {
           {active === "Tools" && <Tools groups={data.tools} />}
           {active === "Other" && <Other lines={data.other} />}
         </section>
+
+        <GitHubTracker />
+        <SpotifyPlayer />
       </main>
 
-      <Footer 
+      <Footer
         onResumeClick={() => setIsResumeOpen(true)}
         onReadingClick={() => setIsReadingOpen(true)}
       />
@@ -53,7 +57,14 @@ export default function App() {
         isOpen={isReadingOpen}
         onClose={() => setIsReadingOpen(false)}
       />
-
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }

@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
+import { useLanguage } from "../context/LanguageContext";
+import translations from "../data/translations.json";
 
-// Images (adjust paths to match your project)
-import eyeOpen from "/assets/eye-open.png";       // light mode icon
-import eyeClosed from "/assets/eye-close.png";   // dark mode icon
-import profileHover from "/assets/manjil.png"; // larger hover image
+import eyeOpen from "/assets/eye-open.png";
+import eyeClosed from "/assets/eye-close.png";
+import profileHover from "/assets/manjil.png";
 
 export default function Header() {
   const [dark, setDark] = useState(false);
-  const [ping, setPing] = useState(false); // ripple on toggle
+  const [ping, setPing] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
 
-  // Load saved theme
   useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved === "dark") setDark(true);
   }, []);
 
-  // Apply theme + persist
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
     localStorage.setItem("theme", dark ? "dark" : "light");
@@ -29,17 +29,16 @@ export default function Header() {
     setTimeout(() => setPing(false), 350);
   };
 
+  const headerText = translations.header[language];
+
   return (
     <header className="max-w-5xl mx-auto px-4 pt-8 pb-6 relative">
-      {/* Row 1: Name (hover photo floats) + right icons */}
       <div className="flex items-start relative">
-        {/* Name + floating photo on hover */}
         <div className="group relative">
           <h1 className="text-lg font-semibold cursor-pointer select-none relative z-10">
-            Hi, I&apos;m Manjil Budhathoki
+            {headerText.name}
           </h1>
 
-          {/* Floating hover photo */}
           <div
             className="absolute top-full mt-3 left-0 h-32 w-32 rounded-md overflow-hidden border border-black/10 dark:border-white/10
                        bg-white/70 dark:bg-neutral-900/70 backdrop-blur shadow-lg z-50
@@ -58,9 +57,7 @@ export default function Header() {
 
         <div className="flex-1" />
 
-        {/* Right side icons + theme toggle */}
         <nav className="flex items-center gap-3 relative z-10">
-          {/* GitHub */}
           <a
             href="https://github.com/manjilbudhathoki"
             target="_blank"
@@ -72,12 +69,19 @@ export default function Header() {
             <FaGithub className="text-lg" />
           </a>
 
-          {/* Nepal flag */}
-          <span className="text-lg cursor-pointer" role="img" aria-label="Nepal Flag" title="Nepal">
+          <button
+            onClick={toggleLanguage}
+            className="text-lg cursor-pointer hover:scale-110 transition-transform duration-200 relative group"
+            role="img"
+            aria-label="Toggle language"
+            title="Toggle language"
+          >
             🇳🇵
-          </span>
+            <span className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-1 text-[11px] bg-black/80 text-white dark:bg-white/90 dark:text-black opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-150 shadow">
+              {language === 'en' ? 'नेपाली' : 'English'}
+            </span>
+          </button>
 
-          {/* Theme toggle with photo icons */}
           <button
             aria-label="Toggle theme"
             title="Toggle theme"
@@ -111,15 +115,10 @@ export default function Header() {
         </nav>
       </div>
 
-      {/* Row 2: Intro text */}
       <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300 max-w-prose relative z-10">
-        Machine Learning Engineer based in Nepal, 21 years old with a passion for NLP and deep learning.
-        Currently working on a{" "}
-        <span className="text-blue-600 dark:text-blue-400 font-semibold">Deforestation Audio Classifier</span> and{" "}
-        <span className="text-blue-600 dark:text-blue-400 font-semibold">End-to-End MLOps Prediction Pipeline</span>.
+        {headerText.bio}
       </p>
 
-      {/* Row 3: Social icons */}
       <div className="flex items-center gap-2 mt-3 text-neutral-600 dark:text-neutral-300 relative z-10">
         {[
           { icon: <SiHuggingface className="text-lg" />, label: "Hugging Face", href: "https://huggingface.co/manjilbudhathoki" },
