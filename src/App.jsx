@@ -28,19 +28,28 @@ function AppContent() {
     <div className="relative">
       <Header />
 
-      <main className="max-w-5xl mx-auto px-4 mt-6">
-        <Tabs value={active} onChange={setActive} items={items} />
+      <main className="max-w-7xl mx-auto px-4 mt-6">
+        <div className="flex gap-6 lg:gap-8">
+          <aside className="hidden lg:flex flex-col gap-4 w-48 flex-shrink-0 pt-2">
+            <GitHubTracker />
+          </aside>
 
-        <section className="mt-6 space-y-6">
-          {active === "Projects" && <Projects projects={data.projects} />}
-          {active === "Blog" && <Blog />}
-          {active === "Experience" && <Experience data={data.experience} />}
-          {active === "Tools" && <Tools groups={data.tools} />}
-          {active === "Other" && <Other lines={data.other} />}
-        </section>
+          <div className="flex-1 min-w-0">
+            <Tabs value={active} onChange={setActive} items={items} />
 
-        <GitHubTracker />
-        <SpotifyPlayer />
+            <section className="mt-6 space-y-6">
+              {active === "Projects" && <Projects projects={data.projects} />}
+              {active === "Blog" && <Blog />}
+              {active === "Experience" && <Experience data={data.experience} />}
+              {active === "Tools" && <Tools groups={data.tools} />}
+              {active === "Other" && <Other lines={data.other} />}
+            </section>
+          </div>
+
+          <aside className="hidden lg:flex flex-col gap-4 w-48 flex-shrink-0 pt-2">
+            <SpotifyPlayer />
+          </aside>
+        </div>
       </main>
 
       <Footer
