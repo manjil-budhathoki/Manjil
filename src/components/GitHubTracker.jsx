@@ -1,7 +1,8 @@
-import { useLanguage } from '../context/LanguageContext';
-
 export default function GitHubTracker() {
-  const { language } = useLanguage();
+  const days = Array.from({ length: 42 }, (_, i) => ({
+    id: i,
+    active: Math.random() > 0.4,
+  }));
 
   return (
     <div
@@ -21,55 +22,46 @@ export default function GitHubTracker() {
             transform: translateY(0);
           }
         }
+        @keyframes gridPulse {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 1; }
+        }
+        .grid-cell-active {
+          animation: gridPulse 2s ease-in-out infinite;
+        }
       `}</style>
 
       <a
         href="https://github.com/manjilbudhathoki"
         target="_blank"
         rel="noopener noreferrer"
-        className="block text-xs font-semibold text-neutral-400 hover:text-neutral-300 transition-colors tracking-wider mb-3"
+        className="block text-xs font-semibold text-neutral-400 hover:text-neutral-300 transition-colors tracking-wider mb-2"
       >
         GITHUB
       </a>
 
-      <div className="space-y-2">
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-neutral-400">Streak</span>
-          <span className="font-semibold text-neutral-200">42 days</span>
-        </div>
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-neutral-400">Repos</span>
-          <span className="font-semibold text-neutral-200">15</span>
-        </div>
-        <div className="flex items-center justify-between text-xs">
-          <span className="text-neutral-400">Commits</span>
-          <span className="font-semibold text-neutral-200">847</span>
-        </div>
+      <div className="grid grid-cols-7 gap-1">
+        {days.map((day) => (
+          <div
+            key={day.id}
+            className={`w-2 h-2 rounded-sm transition-all duration-300 ${
+              day.active ? 'grid-cell-active bg-emerald-500' : 'bg-neutral-700/30'
+            }`}
+            style={{
+              animation: day.active ? `gridPulse 2s ease-in-out infinite` : 'none',
+              animationDelay: day.active ? `${day.id * 0.03}s` : '0s',
+            }}
+          />
+        ))}
       </div>
 
-      <div className="mt-3 pt-3 border-t border-neutral-700/30">
-        <div className="flex gap-1">
-          {[...Array(7)].map((_, i) => (
-            <div
-              key={i}
-              className="w-2 h-2 rounded-full bg-neutral-700/50 hover:bg-green-500/80 transition-colors"
-              style={{
-                backgroundColor: i < 5 ? '#10b981' : '#404854',
-                animation: `fadeInUp 0.6s ease-out forwards`,
-                animationDelay: `${i * 0.05}s`,
-                opacity: 0,
-              }}
-            />
-          ))}
-        </div>
-        <p className="text-xs text-neutral-500 mt-2">Last 7 days</p>
-      </div>
+      <p className="text-xs text-neutral-500 mt-2">42-day grid</p>
 
       <a
         href="https://github.com/manjilbudhathoki"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-block text-xs text-blue-400 hover:text-blue-300 transition-colors"
+        className="mt-2 inline-block text-xs text-blue-400 hover:text-blue-300 transition-colors"
       >
         View →
       </a>
