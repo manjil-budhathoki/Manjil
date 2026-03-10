@@ -8,21 +8,20 @@ import Blog from "./sections/Blog";
 import Experience from "./sections/Experience";
 import Tools from "./sections/Tools";
 import Other from "./sections/Other";
+import Reading from "./sections/Reading";
 
 import data from "./data/data.json";
 import Footer from "./components/Footer";
 
 import ResumeModal from "./components/ResumeModal";
-import ReadingModal from "./components/ReadingModal";
-import GitHubTracker from "./components/GitHubTracker";
-import SpotifyPlayer from "./components/SpotifyPlayer";
+import GithubStats from "./components/GithubStats";
+import MusicPlayer from "./components/MusicPlayer";
 
 function AppContent() {
-  const items = ["Projects", "Blog", "Experience", "Tools", "Other"];
+  const items = ["Projects", "Blog", "Experience", "Tools", "Reading", "Other"];
   const [active, setActive] = useState(items[0]);
 
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [isReadingOpen, setIsReadingOpen] = useState(false);
 
   return (
     <div className="relative">
@@ -30,8 +29,8 @@ function AppContent() {
 
       <main className="max-w-7xl mx-auto px-4 mt-6">
         <div className="flex gap-6 lg:gap-8">
-          <aside className="hidden lg:flex flex-col gap-4 w-48 flex-shrink-0 pt-2">
-            <GitHubTracker />
+          <aside className="hidden lg:flex flex-col gap-8 w-56 flex-shrink-0 pt-2">
+            <GithubStats />
           </aside>
 
           <div className="flex-1 min-w-0">
@@ -42,29 +41,24 @@ function AppContent() {
               {active === "Blog" && <Blog />}
               {active === "Experience" && <Experience data={data.experience} />}
               {active === "Tools" && <Tools groups={data.tools} />}
+              {active === "Reading" && <Reading />}
               {active === "Other" && <Other lines={data.other} />}
             </section>
           </div>
 
-          <aside className="hidden lg:flex flex-col gap-4 w-48 flex-shrink-0 pt-2">
-            <SpotifyPlayer />
+          <aside className="hidden lg:flex flex-col gap-8 w-56 flex-shrink-0 pt-2">
+            <MusicPlayer />
           </aside>
         </div>
       </main>
 
       <Footer
         onResumeClick={() => setIsResumeOpen(true)}
-        onReadingClick={() => setIsReadingOpen(true)}
       />
 
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
-      />
-
-      <ReadingModal
-        isOpen={isReadingOpen}
-        onClose={() => setIsReadingOpen(false)}
       />
     </div>
   );

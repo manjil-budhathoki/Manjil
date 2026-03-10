@@ -1,4 +1,4 @@
-export default function Footer({ onResumeClick, onReadingClick }) {
+export default function Footer({ onResumeClick }) {
   return (
     <footer className="mt-16 border-t border-gray-200 dark:border-gray-800">
       <div className="max-w-5xl mx-auto px-4 py-6 text-[13px] text-neutral-600 dark:text-neutral-400 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
@@ -26,12 +26,6 @@ export default function Footer({ onResumeClick, onReadingClick }) {
             className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
           >
             Résumé
-          </button>
-          <button
-            onClick={onReadingClick}
-            className="hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
-          >
-            Reading
           </button>
         </div>
       </div>
