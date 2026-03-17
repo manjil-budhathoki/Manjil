@@ -15,7 +15,6 @@ import Footer from "./components/Footer";
 
 import ResumeModal from "./components/ResumeModal";
 import GithubStats from "./components/GithubStats";
-import MusicPlayer from "./components/MusicPlayer";
 
 function AppContent() {
   const items = ["Projects", "Blog", "Experience", "Tools", "Reading", "Other"];
@@ -29,7 +28,7 @@ function AppContent() {
 
       <main className="max-w-7xl mx-auto px-4 mt-6">
         <div className="flex gap-6 lg:gap-8">
-          <aside className="hidden lg:flex flex-col gap-8 w-56 flex-shrink-0 pt-2">
+          <aside className="hidden lg:flex flex-col gap-6 w-48 flex-shrink-0 pt-2">
             <GithubStats />
           </aside>
 
@@ -45,10 +44,6 @@ function AppContent() {
               {active === "Other" && <Other lines={data.other} />}
             </section>
           </div>
-
-          <aside className="hidden lg:flex flex-col gap-8 w-56 flex-shrink-0 pt-2">
-            <MusicPlayer />
-          </aside>
         </div>
       </main>
 
