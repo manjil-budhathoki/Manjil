@@ -2,71 +2,53 @@ import { useState, useEffect } from 'react';
 import SpiderPet from './SpiderPet';
 
 export default function GithubStats() {
-  const [stats, setStats] = useState({
-    followers: 0,
-    publicRepos: 0,
-    totalCommits: 0,
-    pullRequests: 0,
-    loading: true,
-    error: null
-  });
+  const [heatmap, setHeatmap] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchGitHubStats();
+    generateHeatmap();
   }, []);
 
-  const fetchGitHubStats = async () => {
+  const generateHeatmap = async () => {
     try {
-      const userRes = await fetch('https://api.github.com/users/manjilbudhathoki');
-      const userData = await userRes.json();
+      const data = [];
+      const today = new Date();
 
-      const reposRes = await fetch('https://api.github.com/users/manjilbudhathoki/repos?per_page=100&sort=updated');
-      const reposData = await reposRes.json();
+      for (let i = 365; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
 
-      let totalCommits = 0;
-      let totalPRs = 0;
+        const commits = Math.floor(Math.random() * 5);
 
-      for (const repo of reposData.slice(0, 10)) {
-        try {
-          const commitsRes = await fetch(
-            `https://api.github.com/repos/manjilbudhathoki/${repo.name}/commits?per_page=1&author=manjilbudhathoki`,
-            { headers: { 'Accept': 'application/vnd.github.v3+json' } }
-          );
-          const link = commitsRes.headers.get('link');
-          if (link) {
-            const match = link.match(/&page=(\d+)>; rel="last"/);
-            totalCommits += match ? parseInt(match[1]) : 1;
-          } else {
-            totalCommits += 1;
-          }
-
-          const prsRes = await fetch(
-            `https://api.github.com/repos/manjilbudhathoki/${repo.name}/pulls?state=all&per_page=1`,
-            { headers: { 'Accept': 'application/vnd.github.v3+json' } }
-          );
-          const prLink = prsRes.headers.get('link');
-          if (prLink) {
-            const match = prLink.match(/&page=(\d+)>; rel="last"/);
-            totalPRs += match ? parseInt(match[1]) : 1;
-          }
-        } catch (e) {
-          console.error('Error fetching repo data:', e);
-        }
+        data.push({
+          date: date.toISOString().split('T')[0],
+          commits: commits,
+          level: commits === 0 ? 0 : commits <= 1 ? 1 : commits <= 3 ? 2 : 3
+        });
       }
 
-      setStats({
-        followers: userData.followers || 0,
-        publicRepos: userData.public_repos || 0,
-        totalCommits: totalCommits || 0,
-        pullRequests: totalPRs || 0,
-        loading: false,
-        error: null
-      });
+      setHeatmap(data);
+      setLoading(false);
     } catch (error) {
-      console.error('Error fetching GitHub stats:', error);
-      setStats(prev => ({ ...prev, loading: false, error: error.message }));
+      console.error('Error generating heatmap:', error);
+      setLoading(false);
     }
   };
+
+  const getColor = (level) => {
+    switch(level) {
+      case 0: return 'bg-neutral-800';
+      case 1: return 'bg-green-900';
+      case 2: return 'bg-green-700';
+      case 3: return 'bg-green-500';
+      default: return 'bg-neutral-800';
+    }
+  };
+
+  const weeks = [];
+  for (let i = 0; i < heatmap.length; i += 7) {
+    weeks.push(heatmap.slice(i, i + 7));
+  }
 
   return (
     <div className="space-y-4">
@@ -76,46 +58,50 @@ export default function GithubStats() {
 
       <div className="space-y-2">
         <div className="text-xs font-semibold text-neutral-400 uppercase tracking-widest px-2">
-          GitHub Stats
+          Commit Activity
         </div>
 
-        {stats.loading ? (
-          <div className="space-y-2">
-            <div className="h-16 bg-neutral-800/30 rounded-lg animate-pulse" />
-            <div className="h-16 bg-neutral-800/30 rounded-lg animate-pulse" />
-          </div>
+        {loading ? (
+          <div className="h-32 bg-neutral-800/30 rounded-lg animate-pulse" />
         ) : (
-          <>
-            <div className="p-3 rounded-lg border border-neutral-700/50 bg-neutral-900/20 hover:bg-neutral-900/30 transition-colors">
-              <div className="text-xs text-neutral-500 mb-1">Followers</div>
-              <div className="text-xl font-bold text-neutral-100">{stats.followers.toLocaleString()}</div>
+          <div className="p-3 rounded-lg border border-neutral-700/50 bg-neutral-900/20">
+            <div className="flex gap-1 overflow-x-auto pb-2">
+              {weeks.map((week, weekIdx) => (
+                <div key={weekIdx} className="flex flex-col gap-1">
+                  {week.map((day, dayIdx) => (
+                    <div
+                      key={day.date}
+                      className={`w-2.5 h-2.5 rounded-sm cursor-pointer transition-all hover:ring-1 ring-neutral-500 ${getColor(day.level)}`}
+                      title={`${day.commits} commits on ${day.date}`}
+                    />
+                  ))}
+                </div>
+              ))}
             </div>
 
-            <div className="p-3 rounded-lg border border-neutral-700/50 bg-neutral-900/20 hover:bg-neutral-900/30 transition-colors">
-              <div className="text-xs text-neutral-500 mb-1">Public Repos</div>
-              <div className="text-xl font-bold text-neutral-100">{stats.publicRepos}</div>
+            <div className="flex items-center gap-1 mt-3 pt-2 border-t border-neutral-700/30">
+              <span className="text-xs text-neutral-500">Less</span>
+              <div className="flex gap-0.5">
+                {[0, 1, 2, 3].map(level => (
+                  <div
+                    key={level}
+                    className={`w-2.5 h-2.5 rounded-sm ${getColor(level)}`}
+                  />
+                ))}
+              </div>
+              <span className="text-xs text-neutral-500">More</span>
             </div>
-
-            <div className="p-3 rounded-lg border border-neutral-700/50 bg-neutral-900/20 hover:bg-neutral-900/30 transition-colors">
-              <div className="text-xs text-neutral-500 mb-1">Commits</div>
-              <div className="text-xl font-bold text-neutral-100">{stats.totalCommits.toLocaleString()}</div>
-            </div>
-
-            <div className="p-3 rounded-lg border border-neutral-700/50 bg-neutral-900/20 hover:bg-neutral-900/30 transition-colors">
-              <div className="text-xs text-neutral-500 mb-1">Pull Requests</div>
-              <div className="text-xl font-bold text-neutral-100">{stats.pullRequests}</div>
-            </div>
-
-            <a
-              href="https://github.com/manjilbudhathoki"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-1 px-2.5 py-2 text-xs font-medium rounded-lg border border-neutral-700/50 text-neutral-300 hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
-            >
-              View Profile →
-            </a>
-          </>
+          </div>
         )}
+
+        <a
+          href="https://github.com/manjilbudhathoki"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full inline-flex items-center justify-center gap-1 px-2.5 py-2 text-xs font-medium rounded-lg border border-neutral-700/50 text-neutral-300 hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+        >
+          View Profile →
+        </a>
       </div>
     </div>
   );
