@@ -165,7 +165,7 @@ export default function Reading() {
   const progress = Math.round((completedItems / totalItems) * 100);
 
   return (
-    <section className="space-y-8 pb-16">
+    <section className="space-y-8">
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-8px); }
@@ -176,40 +176,45 @@ export default function Reading() {
         }
       `}</style>
 
-      <div>
-        <h2 className="text-lg font-bold tracking-tight mb-2 border-b border-neutral-700 pb-2">
+      <div className="space-y-3">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
           Learning Roadmap
-        </h2>
-        <p className="text-sm text-neutral-400 mt-3">
+        </h1>
+        <p className="text-base text-neutral-600 dark:text-neutral-300 max-w-2xl">
           A structured journey through machine learning, from fundamentals to advanced topics.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 rounded-lg border border-neutral-700/50 bg-neutral-900/30">
-          <div className="text-sm text-neutral-400 mb-1">Categories</div>
-          <div className="text-2xl font-bold text-neutral-100">{categories.length}</div>
+        <div className="p-6 rounded-lg border border-gray-200 dark:border-neutral-700/50 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-neutral-900/30 dark:to-neutral-900/50 transition-all hover:border-blue-300/50 dark:hover:border-blue-400/50">
+          <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 mb-2 uppercase tracking-widest">Categories</div>
+          <div className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">{categories.length}</div>
         </div>
-        <div className="p-4 rounded-lg border border-neutral-700/50 bg-neutral-900/30">
-          <div className="text-sm text-neutral-400 mb-1">Total Topics</div>
-          <div className="text-2xl font-bold text-neutral-100">{totalItems}</div>
+        <div className="p-6 rounded-lg border border-gray-200 dark:border-neutral-700/50 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-neutral-900/30 dark:to-neutral-900/50 transition-all hover:border-blue-300/50 dark:hover:border-blue-400/50">
+          <div className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 mb-2 uppercase tracking-widest">Learning Topics</div>
+          <div className="text-3xl font-bold text-neutral-900 dark:text-neutral-100">{totalItems}</div>
         </div>
-        <div className="p-4 rounded-lg border border-neutral-700/50 bg-neutral-900/30">
-          <div className="text-sm text-neutral-400 mb-1">Progress</div>
-          <div className="flex items-end gap-2">
-            <span className="text-2xl font-bold text-emerald-400">{progress}%</span>
-            <span className="text-xs text-neutral-400 mb-1">
-              ({completedItems}/{totalItems})
+        <div className="p-6 rounded-lg border border-gray-200 dark:border-neutral-700/50 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-900/30 transition-all hover:border-emerald-300/50 dark:hover:border-emerald-400/50">
+          <div className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 mb-2 uppercase tracking-widest">Completion</div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{progress}%</span>
+            <span className="text-xs text-emerald-600 dark:text-emerald-400/70 font-medium">
+              {completedItems}/{totalItems}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="w-full h-2 rounded-full bg-neutral-800/50 overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-700"
-          style={{ width: `${progress}%` }}
-        />
+      <div className="space-y-2">
+        <div className="w-full h-3 rounded-full bg-gray-200 dark:bg-neutral-800/50 overflow-hidden border border-gray-300 dark:border-neutral-700/50">
+          <div
+            className="h-full bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-600 dark:from-emerald-500 dark:to-emerald-600 transition-all duration-700 shadow-lg"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <p className="text-xs text-neutral-500 dark:text-neutral-400 text-center">
+          {completedItems} of {totalItems} topics completed
+        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-6">
@@ -222,31 +227,31 @@ export default function Reading() {
         ))}
       </div>
 
-      <div className="p-6 rounded-lg border border-neutral-700/50 bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 backdrop-blur-sm">
-        <h3 className="font-semibold text-neutral-100 mb-3 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-blue-400" />
-          Research & References
+      <div className="p-6 rounded-lg border border-gray-200 dark:border-neutral-700/50 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/10 dark:to-cyan-900/10 backdrop-blur-sm transition-all hover:border-blue-300/50 dark:hover:border-blue-400/50">
+        <h3 className="font-semibold text-neutral-900 dark:text-neutral-100 mb-3 flex items-center gap-2 text-lg">
+          <span className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400" />
+          Key Research & References
         </h3>
-        <p className="text-sm text-neutral-400 mb-4">
-          Curated papers and resources that form the foundation of my learning:
+        <p className="text-sm text-neutral-700 dark:text-neutral-400 mb-4">
+          Curated papers and resources that form the foundation of my learning journey:
         </p>
-        <ul className="space-y-2 text-sm">
-          <li className="flex items-start gap-2 text-neutral-300 hover:text-neutral-100 transition-colors">
-            <span className="text-blue-400 mt-0.5">→</span>
+        <ul className="space-y-3 text-sm">
+          <li className="flex items-start gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors p-3 rounded-lg hover:bg-white dark:hover:bg-neutral-800/30 cursor-default">
+            <span className="text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0">→</span>
             <span>
-              <strong>Attention Is All You Need</strong> - Transformer architecture (Vaswani et al., 2017)
+              <strong>Attention Is All You Need</strong> <span className="text-neutral-500 dark:text-neutral-400">— Transformer architecture (Vaswani et al., 2017)</span>
             </span>
           </li>
-          <li className="flex items-start gap-2 text-neutral-300 hover:text-neutral-100 transition-colors">
-            <span className="text-blue-400 mt-0.5">→</span>
+          <li className="flex items-start gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors p-3 rounded-lg hover:bg-white dark:hover:bg-neutral-800/30 cursor-default">
+            <span className="text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0">→</span>
             <span>
-              <strong>BERT: Pre-training Deep Bidirectional Transformers</strong> - Language model pre-training (Devlin et al., 2018)
+              <strong>BERT: Pre-training Deep Bidirectional Transformers</strong> <span className="text-neutral-500 dark:text-neutral-400">— Language model pre-training (Devlin et al., 2018)</span>
             </span>
           </li>
-          <li className="flex items-start gap-2 text-neutral-300 hover:text-neutral-100 transition-colors">
-            <span className="text-blue-400 mt-0.5">→</span>
+          <li className="flex items-start gap-3 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors p-3 rounded-lg hover:bg-white dark:hover:bg-neutral-800/30 cursor-default">
+            <span className="text-blue-500 dark:text-blue-400 mt-0.5 flex-shrink-0">→</span>
             <span>
-              <strong>Deep Residual Learning</strong> - ResNet architecture (He et al., 2015)
+              <strong>Deep Residual Learning</strong> <span className="text-neutral-500 dark:text-neutral-400">— ResNet architecture (He et al., 2015)</span>
             </span>
           </li>
         </ul>
