@@ -1,7 +1,8 @@
+import PageHeading from '../components/PageHeading';
 function ProjectCard({ title, badge, desc, tags = [], link, logo }) {
   return (
     <article
-      className="flex items-start gap-4 rounded-xl p-3 transition
+      className="surface-card flex items-start gap-4 rounded-xl p-5 transition
                  hover:bg-black/5 dark:hover:bg-white/5
                  hover:shadow-sm hover:-translate-y-0.5"
     >
@@ -19,7 +20,7 @@ function ProjectCard({ title, badge, desc, tags = [], link, logo }) {
 
       {/* Content */}
       <div className="min-w-0">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <h3 className="h3 m-0">{title}</h3>
           {badge && (
             <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300">
@@ -43,7 +44,7 @@ function ProjectCard({ title, badge, desc, tags = [], link, logo }) {
           </div>
         )}
 
-        {link?.href && (
+        {link?.href && link.href !== '#' && (
           <a
             href={link.href}
             target="_blank"
@@ -61,9 +62,7 @@ function ProjectCard({ title, badge, desc, tags = [], link, logo }) {
 export default function Projects({ projects = [] }) {
   return (
     <div className="space-y-4">
-      <h2 className="text-lg font-bold tracking-tight mb-5 border-b border-gray-200 dark:border-gray-700 pb-2">
-        Projects
-      </h2>
+      <PageHeading eyebrow="SELECTED WORK" title="Ideas, put into practice." description="Experiments and applications at the intersection of machine learning and useful software." />
       {projects.map((p) => (
         <ProjectCard key={p.title} {...p} />
       ))}

@@ -1,19 +1,19 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { LanguageContext } from './useLanguage';
 
-const LanguageContext = createContext();
+
 
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState('en');
 
   useEffect(() => {
-    const saved = localStorage.getItem('language');
-    if (saved) setLanguage(saved);
+    try { const saved = localStorage.getItem('language'); if (saved === 'en' || saved === 'ne') setLanguage(saved); } catch { /* Storage is optional. */ }
   }, []);
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'ne' : 'en';
     setLanguage(newLang);
-    localStorage.setItem('language', newLang);
+    try { localStorage.setItem('language', newLang); } catch { /* Storage is optional. */ }
   };
 
   return (
@@ -23,10 +23,3 @@ export function LanguageProvider({ children }) {
   );
 }
 
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within LanguageProvider');
-  }
-  return context;
-}

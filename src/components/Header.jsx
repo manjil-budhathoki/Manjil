@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SiHuggingface } from "react-icons/si";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../context/useLanguage";
 import translations from "../data/translations.json";
 
 import eyeOpen from "/assets/eye-open.png";
@@ -9,18 +9,13 @@ import eyeClosed from "/assets/eye-close.png";
 import profileHover from "/assets/manjil.png";
 
 export default function Header() {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => { try { return localStorage.getItem('theme') === 'dark'; } catch { return false; } });
   const [ping, setPing] = useState(false);
   const { language, toggleLanguage } = useLanguage();
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") setDark(true);
-  }, []);
-
-  useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
-    localStorage.setItem("theme", dark ? "dark" : "light");
+    try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch { /* Storage may be unavailable. */ }
   }, [dark]);
 
   const handleToggle = () => {
@@ -32,7 +27,7 @@ export default function Header() {
   const headerText = translations.header[language];
 
   return (
-    <header className="max-w-5xl mx-auto px-4 pt-8 pb-6 relative">
+    <header className="site-header">
       <div className="flex items-start relative">
         <div className="group relative">
           <h1 className="text-lg font-semibold cursor-pointer select-none relative z-10">
@@ -72,7 +67,6 @@ export default function Header() {
           <button
             onClick={toggleLanguage}
             className="text-lg cursor-pointer hover:scale-110 transition-transform duration-200 relative group"
-            role="img"
             aria-label="Toggle language"
             title="Toggle language"
           >

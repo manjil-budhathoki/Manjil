@@ -1,104 +1,41 @@
-import { useState } from "react";
-import { LanguageProvider } from "./context/LanguageContext";
-import Header from "./components/Header";
-import Tabs from "./components/Tabs";
-
-import Projects from "./sections/Projects";
-import Experience from "./sections/Experience";
-import Tools from "./sections/Tools";
-import Other from "./sections/Other";
-import Blog from "./sections/Blog";
-import Reading from "./sections/Reading";
-
-import data from "./data/data.json";
-import Footer from "./components/Footer";
-
-import ResumeModal from "./components/ResumeModal";
-
+import { lazy, Suspense, useState } from 'react';
+import { HashRouter, NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ResumeModal from './components/ResumeModal';
+import data from './data/data.json';
+const Projects = lazy(() => import('./sections/Projects'));
+const Experience = lazy(() => import('./sections/Experience'));
+const Tools = lazy(() => import('./sections/Tools'));
+const Other = lazy(() => import('./sections/Other'));
+const Blog = lazy(() => import('./sections/Blog'));
+const Reading = lazy(() => import('./sections/Reading'));
+const pages = [['/', 'Projects'], ['/experience', 'Experience'], ['/tools', 'Tools'], ['/reading', 'Reading'], ['/blog', 'Blog'], ['/other', 'Other']];
 function AppContent() {
-  const items = ["Projects", "Experience", "Tools", "Other"];
-  const [active, setActive] = useState(items[0]);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [showBlog, setShowBlog] = useState(false);
-  const [showReading, setShowReading] = useState(false);
-
-  if (showBlog) {
-    return (
-      <>
-        <Header />
-        <div className="flex-1 max-w-4xl mx-auto w-full px-4 mt-8 mb-8">
-          <button
-            onClick={() => setShowBlog(false)}
-            className="mb-6 text-sm text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 flex items-center gap-2"
-          >
-            ← Back
-          </button>
-          <Blog />
-        </div>
-        <Footer
-          onResumeClick={() => setIsResumeOpen(true)}
-          onBlogClick={() => setShowBlog(false)}
-          onReadingClick={() => { setShowBlog(false); setShowReading(true); }}
-        />
-      </>
-    );
-  }
-
-  if (showReading) {
-    return (
-      <>
-        <Header />
-        <div className="flex-1 max-w-4xl mx-auto w-full px-4 mt-8 mb-8">
-          <button
-            onClick={() => setShowReading(false)}
-            className="mb-6 text-sm text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 flex items-center gap-2"
-          >
-            ← Back
-          </button>
-          <Reading />
-        </div>
-        <Footer
-          onResumeClick={() => setIsResumeOpen(true)}
-          onBlogClick={() => { setShowReading(false); setShowBlog(true); }}
-          onReadingClick={() => setShowReading(false)}
-        />
-      </>
-    );
-  }
-
-  return (
-    <div className="relative min-h-screen flex flex-col">
-      <Header />
-
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 mt-8 mb-8">
-        <Tabs value={active} onChange={setActive} items={items} />
-
-        <section className="mt-8 space-y-6">
-          {active === "Projects" && <Projects projects={data.projects} />}
-          {active === "Experience" && <Experience data={data.experience} />}
-          {active === "Tools" && <Tools groups={data.tools} />}
-          {active === "Other" && <Other lines={data.other} />}
-        </section>
-      </main>
-
-      <Footer
-        onResumeClick={() => setIsResumeOpen(true)}
-        onBlogClick={() => setShowBlog(true)}
-        onReadingClick={() => setShowReading(true)}
-      />
-
-      <ResumeModal
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
-      />
-    </div>
-  );
+  const navigate = useNavigate();
+  return <div className="site-shell">
+    <a href="#main-content" className="skip-link" onClick={event => { event.preventDefault(); document.getElementById('main-content').focus(); }}>Skip to content</a>
+    <Header />
+    <main id="main-content" tabIndex={-1} className="site-main">
+      <nav className="section-nav" aria-label="Main navigation">{pages.map(([path, label]) =>
+        <NavLink key={path} to={path} end={path === '/'}>{label}</NavLink>
+      )}</nav>
+      <div className="page-content"><Suspense fallback={<p role="status" className="empty-state">Loading…</p>}>
+        <Routes>
+          <Route path="/" element={<Projects projects={data.projects} />} />
+          <Route path="/experience" element={<Experience data={data.experience} />} />
+          <Route path="/tools" element={<Tools groups={data.tools} />} />
+          <Route path="/other" element={<Other lines={data.other} />} />
+          <Route path="/reading" element={<Reading />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="*" element={<div className="empty-state"><h1>Page not found</h1><NavLink to="/">Back to projects</NavLink></div>} />
+        </Routes>
+      </Suspense></div>
+    </main>
+    <Footer onResumeClick={() => setIsResumeOpen(true)} onBlogClick={() => navigate('/blog')} onReadingClick={() => navigate('/reading')} />
+    <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
+  </div>;
 }
-
-export default function App() {
-  return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
-  );
-}
+export default function App() { return <LanguageProvider><HashRouter><AppContent /></HashRouter></LanguageProvider>; }
